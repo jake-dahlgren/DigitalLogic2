@@ -1,0 +1,61 @@
+-- Varnell 12/11/22
+-- simple 2 state FSM design
+-- light blinks when button is held down
+-- set unused pins "as output driving ground"
+-- change VHDL version to 2008
+-- Set device to MAX 10 and name "10m50daf484c7g"
+-- on DE 10 Lite, button = '0' when pressed
+--Pins:
+-- CLK -> P11 (50MHz clock)
+-- button -> B8 ('top' button)
+-- light -> A8 (LED0)
+library ieee;
+use ieee.std_logic_1164.all;
+entity ComplexBlink is
+port(
+CLK: in std_logic;
+button: in std_logic;
+light: out std_logic
+);
+end entity;
+architecture behav of ComplexBlink is
+signal Q: std_logic;
+signal D: std_logic;
+signal slow_clk: std_logic;
+signal cnt: integer range 0 to 25000000;
+-- set pins
+attribute chip_pin : string;
+attribute chip_pin of CLK : signal is "P11";
+attribute chip_pin of button : signal is "B8";
+attribute chip_pin of light : signal is "A8";
+begin
+-- **** REGISTER ****--
+reg:process(all)
+begin
+<<complete>>
+end process;
+--**** NSL ****--
+NSL:process(all)
+begin
+case Q is
+when '0' => -- Q = '0'
+<<complete>>
+when others => -- Q = '1'
+<<complete>>
+end case;
+end process;
+--**** OUTPUT LOGIC ****--
+light <= Q;
+--**** SLOW CLOCK PROCESS ****--
+SlowClock:process(all)
+begin
+if rising_edge(CLK) 
+then  cnt <= cnt+1; 
+-- slow clock frequency = 50,000,000/(2*max cnt)
+if cnt = 25000000 then
+slow_clk <= not slow_clk;   
+cnt <= 0; 
+end if;  
+end if; 
+end process;
+end architecture;

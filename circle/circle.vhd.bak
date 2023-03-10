@@ -1,0 +1,143 @@
+-- Varnell 11/14/22
+-- 6 state FSM design:
+-- lights run around 7seg display, can choose 
+-- between CC & CCW with DIR input
+-- set unused pins "as input tri-stated with weak pull up"
+-- change VHDL version to 2008
+-- Set device to MAX 10 and name "10m50daf484c7g"
+--- Pins:
+-- CLK -> P11 (50MHz clock)
+-- RST -> A7 ('bottom' button)
+-- DIR -> C10 (SW0)
+-- s7..s0 -> D15, C17, D17, E16, C16, C15, E15, C14 (7 segments)
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity circle is
+
+port(
+RST: in std_logic;
+CLK: in std_logic;
+DIR: in std_logic;
+S7,s6,s5,s4,s3,s2,s1,s0: out std_logic
+);
+
+end entity;
+
+architecture behav of circle is
+signal Q: std_logic_vector(2 downto 0);
+signal D: std_logic_vector(2 downto 0);
+signal QDIR: std_logic_vector(3 downto 0);
+signal slow_clk: std_logic;
+signal cnt: integer range 0 to 25000000;
+
+-- set pins
+
+attribute chip_pin : string;
+attribute chip_pin of RST : signal is "A7";
+attribute chip_pin of CLK : signal is "P11";
+attribute chip_pin of DIR : signal is "C10";
+attribute chip_pin of s7 : signal is "D15";
+attribute chip_pin of s6 : signal is "C17";
+attribute chip_pin of s5 : signal is "D17";
+attribute chip_pin of s4 : signal is "E16";
+attribute chip_pin of s3 : signal is "C16";
+attribute chip_pin of s2 : signal is "C15";
+attribute chip_pin of s1 : signal is "E15";
+attribute chip_pin of s0 : signal is "C14";
+
+begin
+-- **** REGISTER ****--
+
+reg:process(all)
+begin
+
+if rising_edge(slow_clk) then 
+	if RST = '0' then 
+		Q = "000";
+	else Q <= D;
+	end if;
+end if;
+
+end process;
+
+--**** NSL ****--
+
+NSL:process(all)
+begin
+
+case Q is 
+	when "000" => 
+		if DIR = '0' then D <= "101";
+		else D <= "001";
+		end if;
+	when "001" =>
+		if DIR = '0' then D <= "000";
+		else D <= "010";
+		end if;
+	when "010" =>
+		if DIR = '0' then D <= "001";
+		else D <= "011";
+		end if;
+	when "011" =>
+		if DIR = '0' then D <= "010";
+		else D <= "100";
+		end if;
+	when "100" =>
+		if DIR = '0' then D <= "011";
+		else D <= "101";
+		end if;
+	when others =>
+		if DIR = '0' then D <= "100";
+		else D <= "000";
+		end if;
+end case;
+
+end process;
+
+--**** OUTPUT LOGIC ****--
+
+with Q select s0 <=
+	'0' when "000"|"101",
+	'1' when others;
+
+with Q select s1 <=
+	'0' when "000"|"001",
+	'1' when others;
+	
+with Q select s2 <=
+	'0' when "001"|"010",
+	'1' when others;
+	
+with Q select s3 <=
+	'0' when "010"|"011",
+	'1' when others;
+	
+with Q select s4 <=
+	'0' when "011"|"100",
+	'1' when others;
+	
+with Q select s5 <=
+	'0' when "100"|"101",
+	'1' when others;
+	
+s6 <= '1';
+s7 <= '1';
+
+	
+
+--**** SLOW CLOCK PROCESS ****--
+
+SlowClock:process(all)
+begin
+
+if rising_edge(CLK) 
+	then  cnt <= cnt+1; 
+	if cnt = 3500000 then
+		slow_clk <= not slow_clk;   
+		cnt <= 0; 
+	end if;  
+end if; 
+end process;
+end architecture;

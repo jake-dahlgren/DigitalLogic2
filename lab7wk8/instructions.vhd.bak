@@ -1,0 +1,15 @@
+--Jake SDahlgren 1/24/2023
+--Instruction constants
+library ieee; use ieee.std_logic_1164.all; 
+package instructions is  
+ 
+  constant stop:    std_logic_vector(2 downto 0) := B"000"; 
+  constant leftturn:   std_logic_vector(2 downto 0) := B"001"; 
+  constant rightturn:   std_logic_vector(2 downto 0) := B"010"; 
+  constant forward:   std_logic_vector(2 downto 0) := B"011"; 
+  constant backward:   std_logic_vector(2 downto 0) := B"100"; 
+  constant beep:    std_logic_vector(2 downto 0) := B"101"; 
+  constant displayrun:  std_logic_vector(2 downto 0) := B"110"; 
+  constant displayend:  std_logic_vector(2 downto 0) := B"111"; 
+   
+end package instructions;

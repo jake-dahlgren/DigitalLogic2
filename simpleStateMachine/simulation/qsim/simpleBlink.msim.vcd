@@ -1,0 +1,224 @@
+$comment
+	File created using the following command:
+		vcd file simpleBlink.msim.vcd -direction
+$end
+$date
+	Mon Dec 12 14:46:32 2022
+$end
+$version
+	ModelSim Version 2020.1
+$end
+$timescale
+	1ps
+$end
+
+$scope module simpleblink_vhd_vec_tst $end
+$var wire 1 ! CLK $end
+$var wire 1 " CLR $end
+$var wire 1 # LD $end
+$var wire 1 $ light $end
+
+$scope module i1 $end
+$var wire 1 % gnd $end
+$var wire 1 & vcc $end
+$var wire 1 ' unknown $end
+$var wire 1 ( devoe $end
+$var wire 1 ) devclrn $end
+$var wire 1 * devpor $end
+$var wire 1 + ww_devoe $end
+$var wire 1 , ww_devclrn $end
+$var wire 1 - ww_devpor $end
+$var wire 1 . ww_CLK $end
+$var wire 1 / ww_CLR $end
+$var wire 1 0 ww_LD $end
+$var wire 1 1 ww_light $end
+$var wire 1 2 \light~output_o\ $end
+$var wire 1 3 \CLK~input_o\ $end
+$var wire 1 4 \LD~input_o\ $end
+$var wire 1 5 \Q~0_combout\ $end
+$var wire 1 6 \CLR~input_o\ $end
+$var wire 1 7 \Q~q\ $end
+$var wire 1 8 \ALT_INV_Q~q\ $end
+$var wire 1 9 \ALT_INV_LD~input_o\ $end
+$var wire 1 : \ALT_INV_CLR~input_o\ $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+0"
+1#
+0$
+0%
+1&
+x'
+1(
+1)
+1*
+1+
+1,
+1-
+0.
+0/
+10
+01
+02
+03
+14
+15
+06
+07
+18
+09
+1:
+$end
+#40000
+1!
+1.
+13
+17
+08
+05
+12
+11
+1$
+#80000
+0!
+0.
+03
+#120000
+1!
+1.
+13
+07
+18
+15
+02
+01
+0$
+#160000
+0!
+0.
+03
+#200000
+1!
+1.
+13
+17
+08
+05
+12
+11
+1$
+#240000
+0!
+0.
+03
+#280000
+1!
+1.
+13
+07
+18
+15
+02
+01
+0$
+#320000
+0!
+0.
+03
+#360000
+1!
+1.
+13
+17
+08
+05
+12
+11
+1$
+#400000
+0!
+0.
+03
+#410000
+0#
+00
+04
+19
+15
+#440000
+1!
+1.
+13
+#480000
+0!
+0.
+03
+#520000
+1!
+1.
+13
+#550000
+1"
+1/
+16
+0:
+07
+18
+05
+02
+01
+0$
+#560000
+0!
+0.
+03
+#600000
+1!
+1.
+13
+#640000
+0!
+0.
+03
+#680000
+1!
+1.
+13
+#720000
+0!
+0.
+03
+#760000
+1!
+1.
+13
+#800000
+0!
+0.
+03
+#830000
+0"
+0/
+06
+1:
+#840000
+1!
+1.
+13
+#880000
+0!
+0.
+03
+#920000
+1!
+1.
+13
+#960000
+0!
+0.
+03
+#1000000

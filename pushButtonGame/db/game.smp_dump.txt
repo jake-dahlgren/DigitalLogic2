@@ -1,0 +1,9 @@
+
+State Machine - |game|Q
+Name Q.WIN Q.P Q.DP3 Q.DP2 Q.DP1 Q.DP0 
+Q.DP0 0 0 0 0 0 0 
+Q.DP1 0 0 0 0 1 1 
+Q.DP2 0 0 0 1 0 1 
+Q.DP3 0 0 1 0 0 1 
+Q.P 0 1 0 0 0 1 
+Q.WIN 1 0 0 0 0 1 

@@ -1,0 +1,45 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "nsRed",
+					"strict" : false
+				},
+				{
+					"name" : "nsYellow",
+					"strict" : false
+				},
+				{
+					"name" : "nsGreen",
+					"strict" : false
+				},
+				{
+					"name" : "ewRed",
+					"strict" : false
+				},
+				{
+					"name" : "ewYellow",
+					"strict" : false
+				},
+				{
+					"name" : "ewGreen",
+					"strict" : false
+				},
+				{
+					"name" : "rst",
+					"strict" : false
+				},
+				{
+					"name" : "CLK",
+					"strict" : false
+				},
+				{
+					"name" : "enable",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

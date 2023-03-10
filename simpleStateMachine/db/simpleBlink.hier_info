@@ -1,0 +1,7 @@
+|simpleBlink
+CLK => Q.CLK
+CLR => Q.ACLR
+LD => Q.ENA
+light <= Q.DB_MAX_OUTPUT_PORT_TYPE
+
+

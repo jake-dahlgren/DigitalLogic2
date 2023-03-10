@@ -1,0 +1,192 @@
+// Copyright (C) 2020  Intel Corporation. All rights reserved.
+// Your use of Intel Corporation's design tools, logic functions 
+// and other software and tools, and any partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Intel Program License 
+// Subscription Agreement, the Intel Quartus Prime License Agreement,
+// the Intel FPGA IP License Agreement, or other applicable license
+// agreement, including, without limitation, that your use is for
+// the sole purpose of programming logic devices manufactured by
+// Intel and sold by Intel or its authorized distributors.  Please
+// refer to the applicable agreement for further details, at
+// https://fpgasoftware.intel.com/eula.
+
+// VENDOR "Altera"
+// PROGRAM "Quartus Prime"
+// VERSION "Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition"
+
+// DATE "12/08/2022 14:46:18"
+
+// 
+// Device: Altera 5CGXFC7C7F23C8 Package FBGA484
+// 
+
+// 
+// This Verilog file should be used for ModelSim-Altera (Verilog) only
+// 
+
+`timescale 1 ps/ 1 ps
+
+module edgepulse (
+	pulse,
+	button,
+	CLK,
+	CLR);
+output 	pulse;
+input 	button;
+input 	CLK;
+input 	CLR;
+
+wire gnd;
+wire vcc;
+wire unknown;
+
+assign gnd = 1'b0;
+assign vcc = 1'b1;
+assign unknown = 1'bx;
+
+tri1 devclrn;
+tri1 devpor;
+tri1 devoe;
+wire \pulse~output_o ;
+wire \CLK~input_o ;
+wire \button~input_o ;
+wire \inst3~combout ;
+wire \CLR~input_o ;
+wire \inst|41~q ;
+wire \inst4~combout ;
+wire \inst|40~q ;
+
+
+cyclonev_io_obuf \pulse~output (
+	.i(\inst|40~q ),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\pulse~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \pulse~output .bus_hold = "false";
+defparam \pulse~output .open_drain_output = "false";
+defparam \pulse~output .shift_series_termination_control = "false";
+// synopsys translate_on
+
+cyclonev_io_ibuf \CLK~input (
+	.i(CLK),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(\CLK~input_o ));
+// synopsys translate_off
+defparam \CLK~input .bus_hold = "false";
+defparam \CLK~input .simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_io_ibuf \button~input (
+	.i(button),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(\button~input_o ));
+// synopsys translate_off
+defparam \button~input .bus_hold = "false";
+defparam \button~input .simulate_z_as = "z";
+// synopsys translate_on
+
+cyclonev_lcell_comb inst3(
+// Equation(s):
+// \inst3~combout  = ((\button~input_o  & \inst|41~q )) # (\inst|40~q )
+
+	.dataa(!\inst|40~q ),
+	.datab(!\button~input_o ),
+	.datac(!\inst|41~q ),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(\inst3~combout ),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam inst3.extended_lut = "off";
+defparam inst3.lut_mask = 64'h5757575757575757;
+defparam inst3.shared_arith = "off";
+// synopsys translate_on
+
+cyclonev_io_ibuf \CLR~input (
+	.i(CLR),
+	.ibar(gnd),
+	.dynamicterminationcontrol(gnd),
+	.o(\CLR~input_o ));
+// synopsys translate_off
+defparam \CLR~input .bus_hold = "false";
+defparam \CLR~input .simulate_z_as = "z";
+// synopsys translate_on
+
+dffeas \inst|41 (
+	.clk(\CLK~input_o ),
+	.d(\inst3~combout ),
+	.asdata(vcc),
+	.clrn(\CLR~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\inst|41~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \inst|41 .is_wysiwyg = "true";
+defparam \inst|41 .power_up = "low";
+// synopsys translate_on
+
+cyclonev_lcell_comb inst4(
+// Equation(s):
+// \inst4~combout  = (!\inst|40~q  & (\button~input_o  & !\inst|41~q ))
+
+	.dataa(!\inst|40~q ),
+	.datab(!\button~input_o ),
+	.datac(!\inst|41~q ),
+	.datad(gnd),
+	.datae(gnd),
+	.dataf(gnd),
+	.datag(gnd),
+	.cin(gnd),
+	.sharein(gnd),
+	.combout(\inst4~combout ),
+	.sumout(),
+	.cout(),
+	.shareout());
+// synopsys translate_off
+defparam inst4.extended_lut = "off";
+defparam inst4.lut_mask = 64'h2020202020202020;
+defparam inst4.shared_arith = "off";
+// synopsys translate_on
+
+dffeas \inst|40 (
+	.clk(\CLK~input_o ),
+	.d(\inst4~combout ),
+	.asdata(vcc),
+	.clrn(\CLR~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\inst|40~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \inst|40 .is_wysiwyg = "true";
+defparam \inst|40 .power_up = "low";
+// synopsys translate_on
+
+assign pulse = \pulse~output_o ;
+
+endmodule

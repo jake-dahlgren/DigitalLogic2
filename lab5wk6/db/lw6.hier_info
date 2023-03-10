@@ -1,0 +1,26 @@
+|lw6
+RST => state_count[4].ACLR
+RST => state_count[3].ACLR
+RST => state_count[2].ACLR
+RST => state_count[1].ACLR
+RST => state_count[0].ACLR
+CLK => clk5KHz.CLK
+CLK => cnt[0].CLK
+CLK => cnt[1].CLK
+CLK => cnt[2].CLK
+CLK => cnt[3].CLK
+CLK => cnt[4].CLK
+CLK => cnt[5].CLK
+CLK => cnt[6].CLK
+CLK => cnt[7].CLK
+CLK => cnt[8].CLK
+CLK => cnt[9].CLK
+CLK => cnt[10].CLK
+CLK => cnt[11].CLK
+CLK => cnt[12].CLK
+y3 << Mux0.DB_MAX_OUTPUT_PORT_TYPE
+y2 << Mux1.DB_MAX_OUTPUT_PORT_TYPE
+y1 << Mux2.DB_MAX_OUTPUT_PORT_TYPE
+y0 << Mux3.DB_MAX_OUTPUT_PORT_TYPE
+
+

@@ -1,0 +1,14 @@
+vendor_name = ModelSim
+source_file = 1, C:/Users/dahlgrenj/OneDrive - Milwaukee School of Engineering/Documents/DigitalLogic2/simpleStateMachine/simpleBlink.vhd
+source_file = 1, C:/Users/dahlgrenj/OneDrive - Milwaukee School of Engineering/Documents/DigitalLogic2/simpleStateMachine/Waveform.vwf
+source_file = 1, c:/intelfpga_lite/20.1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, c:/intelfpga_lite/20.1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, c:/intelfpga_lite/20.1/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, c:/intelfpga_lite/20.1/quartus/libraries/vhdl/ieee/timing_p.vhd
+source_file = 1, C:/Users/dahlgrenj/OneDrive - Milwaukee School of Engineering/Documents/DigitalLogic2/simpleStateMachine/db/simpleBlink.cbx.xml
+design_name = simpleBlink
+instance = comp, \light~output\, light~output, simpleBlink, 1
+instance = comp, \CLK~input\, CLK~input, simpleBlink, 1
+instance = comp, \LD~input\, LD~input, simpleBlink, 1
+instance = comp, \Q~0\, Q~0, simpleBlink, 1
+instance = comp, \CLR~input\, CLR~input, simpleBlink, 1

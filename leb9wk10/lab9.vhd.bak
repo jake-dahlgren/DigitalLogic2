@@ -1,0 +1,194 @@
+-- ******************************************************** 
+-- * PROJECT:   lab9 
+-- * ENTITY:    lab9  
+-- * AUTHOR:    Jake Dahlgren 
+-- * DATE:    	 2/14/2023   
+-- * PROVIDES:  
+-- * - This is a single file solution to a special purpose  
+-- *   data path solving -6X + 4Y + 2. 
+-- *  
+-- * - All components of the data path are described in  
+-- *   this single VHDL file.  
+-- ******************************************************** 
+-- * INPUTS 
+-- ******************************************************** 
+-- * - rst:    active-low synchronous reset signal used to  
+-- *           zero the controller FSM register as well as  
+-- *           the data path registers A and B  
+-- * 
+-- * - clk:     rising-edge triggered register clock used   
+-- *            by all registers  
+-- * 
+-- * - sliders: 8-bits of user data  
+-- *            upper nibble = user input x  
+-- *            lower nibble = user input y  
+-- ******************************************************** 
+-- * OUTPUTS 
+-- ******************************************************** 
+-- * - hex1: seven-segment decoder output for upper nibble  
+-- *         of calculation result  
+-- *  
+-- * - hex0: seven-segment decoder output for lower nibble  
+-- *         of calculation result  
+-- ******************************************************** 
+-- * INTERNAL SIGNALS  
+-- ******************************************************** 
+-- * -      d:  register input for controller FSM register 
+-- * -      q:  register output for controller FSM register  
+-- * -    lda:  active-low load enable for register A 
+-- * - rega_d:  data input for data path register A 
+-- * - rega_q:  data output for data path register A 
+-- * -    ldb:  active-low load enable for register B 
+-- * - regb_d:  data input for data path register B  
+-- * - regb_q:  data output for data path register B 
+-- * -   alus:  alu function select bus   
+-- * -   aluf:  alu output  
+-- * -   muxs:  4-to-1 data selector/mux select bus  
+-- * - muxout:  4-to-1 data selector/mux output  
+-- ******************************************************** 
+-- * USES  
+-- ******************************************************** 
+-- * - ieee std_logic_1164 package 
+-- * - ieee std_logic_unsigned package 
+-- * - ce1911 dseg7font package  
+-- ******************************************************** 
+ 
+-- load library packages 
+library ieee; 
+use ieee.std_logic_1164.all; 
+use ieee.std_logic_unsigned.all; 
+use work.dseg7font.all; 
+ 
+-- describe functional block symbol 
+entity lw10 is  
+port(rst, clk: in std_logic; 
+     sliders: in std_logic_vector(7 downto 0); 
+    << complete >>
+end entity lw10; 
+ 
+-- describe the system architecture in this single file 
+architecture system of lw10 is  
+   
+  -- chip pins 
+  attribute chip_pin: string; 
+  attribute chip_pin of hex0: signal is "D15,C17,D17,E16,C16,C15,E15,C14"; 
+  attribute chip_pin of hex1: signal is "A16,B17,A18,A17,B16,E18,D18,C18"; 
+  attribute chip_pin of sliders: signal is "A14,A13,B12,A12,C12,D12,C11,C10"; 
+         
+  attribute chip_pin of rst: signal is "B8"; 
+  attribute chip_pin of clk: signal is "P11"; 
+ 
+  -- internal signals  
+  signal      d: std_logic_vector(3 downto 0); 
+  signal      q: std_logic_vector(3 downto 0);  
+  signal    lda: std_logic; 
+  signal rega_d: << complete >> ; 
+  signal rega_q: << complete >> ; 
+  signal    ldb: std_logic; 
+  signal regb_d: << complete >> ; 
+  signal regb_q: << complete >> ; 
+  signal   alus: << complete >> ; 
+  signal   << complete remaining signals >>   
+   
+     
+begin  
+ 
+  -- ***************** controller section *************************** 
+  -- * next state logic: saturating up counter 
+  -- * register: synchronous reset and no load control 
+  -- * output logic: with-select for muxs, alus, lda, ldb, dispsel  
+  -- **************************************************************** 
+   
+  -- next state logic 
+  d <= << complete >>; 
+   
+  -- register process 
+  reg: process(<<complete>>)  
+  begin  
+    if rising_edge(<<complete>>) then  
+     if rst = '0' then q <= <<complete>>;  
+     else q <= <<complete>>; 
+     end if; 
+    end if; 
+  end process; 
+   
+  -- control signal output logic 
+  with q select  
+  muxs <= B"11" when X"<<complete>>",  
+          << complete>> when others; 
+   
+  with q select  
+  alus <= B"101" when X"<<complete>>" | X"<<complete>>",  
+          <<complete>> when others; 
+   
+  with q select  
+  lda <= '1' when X"<<complete>>"|X"<<complete>>"| 
+         <<complete>> when others; 
+   
+  with q select  
+  ldb <= <<complete>> when others;
+- ***************** alu section ********************************** 
+  -- * alu input signal: alus  
+  -- *    alus: 0=0,1=1,2=B-1,3=A+B,4=A-B,5=A+A,6=A AND B,7=A OR B 
+  -- * 
+  -- * alu output signal: aluf   
+  -- **************************************************************** 
+  with alus select  
+  aluf <= X"00" when B"000",  
+          X"01" when B"001",  
+    regb_q-1 when B"010", 
+    << complete other options >>       
+    << complete >> when others;  
+        
+  -- ***************** alu register section ************************* 
+  -- * rega: 8-bit register with synchronous load and reset signals 
+  -- * regb: 8-bit register with synchronous load and reset signals 
+  -- **************************************************************** 
+   
+  -- connect registers to shared muxout data bus 
+  rega_d <= muxout; 
+  regb_d <= <<complete>>; 
+   
+  registera: process(rst,clk,lda) 
+  begin  
+    if rising_edge(CLK) then  
+     if rst = '0' then rega_q<= <<complete>>; 
+     elsif lda = '0' then rega_q<=<<complete>>; 
+     end if; 
+   end if; 
+  end process; 
+   
+  registerb: process(rst,clk,ldb) 
+  <<complete>> 
+   
+  -- ***************** data path mux ******************************** 
+  -- * d3: algebraic input X (attached to DE10 sliders 7..4) 
+  -- * d2: algebraic input Y (attached to DE10 sliders 3..0) 
+  -- * d1: grounded  
+  -- * d0: attached to ALUF signal  
+  -- **************************************************************** 
+   
+  -- this multiplexer extends four-bit input nibbles x and y to 
+  -- 8-bit output data bytes by concatenating (&) a zero-value upper nibble 
+  with muxs select  
+  muxout <= B"0000"&sliders(7 downto 4) when B"11", -- x 
+            << complete >> &sliders(3 downto 0) when B"10", -- y 
+            << complete >> when others;  
+        
+  -- ***************** seg7decoder ********************************** 
+  -- * displays the 8-bit value in register b as two hex nibbles   
+  -- * on seven segment displays 
+  -- *  
+  -- * uses: dseg7font package  
+  -- **************************************************************** 
+   
+  with regb_q(7 downto 4) select -- upper nibble  
+  hex1 <= dseg7_0 when X"0",  
+          dseg7_1 when X"1",  
+     <<complete>>,  
+    dseg7_blank when others; 
+        
+  with regb_q(3 downto 0) select -- lower nibble  
+  hex0 <= << complete >> when others; 
+        
+end architecture system;

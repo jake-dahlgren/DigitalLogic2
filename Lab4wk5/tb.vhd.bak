@@ -1,0 +1,9 @@
+--Jake Dahlgren 1/27/2023
+--test bench for traffic light
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity tb is
+end entity;
+

@@ -1,0 +1,18 @@
+
+State Machine - |trafficLight|Q
+Name Q.ewRED1 Q.ewY2 Q.ewY1 Q.ewG4 Q.ewG3 Q.ewG2 Q.ewG1 Q.nsRED1 Q.nsY2 Q.nsY1 Q.nsG4 Q.nsG3 Q.nsG2 Q.nsG1 Q.RESET 
+Q.RESET 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Q.nsG1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+Q.nsG2 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+Q.nsG3 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+Q.nsG4 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+Q.nsY1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+Q.nsY2 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+Q.nsRED1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+Q.ewG1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+Q.ewG2 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+Q.ewG3 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+Q.ewG4 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+Q.ewY1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+Q.ewY2 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Q.ewRED1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
